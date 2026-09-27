@@ -1,0 +1,8 @@
+/target/
+/flutter/build/
+/vcpkg_installed/
+__pycache__/
+.DS_Store
+.env
+*.pfx
+*.p12

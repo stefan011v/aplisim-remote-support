@@ -1,0 +1,8 @@
+{
+  "app": "Aplisim",
+  "mode": "preview",
+  "server": "aplisim-preview.invalid",
+  "publicKey": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+  "signed": false,
+  "connectionTested": false
+}
