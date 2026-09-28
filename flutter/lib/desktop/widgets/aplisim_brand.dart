@@ -61,11 +61,11 @@ class _AplisimHeaderState extends State<AplisimHeader> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('APLISIM · UDALJENA PODRŠKA',
+          Text('APLISIM · REMOTE SUPPORT',
               style: TextStyle(color: accent, fontSize: 10,
                   fontWeight: FontWeight.w600, letterSpacing: 1.4)),
           const SizedBox(height: 8),
-          const Text('Tu smo, gde god da ste.',
+          const Text("We're here, wherever you are.",
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)),
           const SizedBox(height: 8),
           FutureBuilder<Map<String, dynamic>>(
@@ -75,8 +75,8 @@ class _AplisimHeaderState extends State<AplisimHeader> {
               final configured = config?['mode'] == 'configured';
               return Text(
                 configured
-                    ? 'Vaš server: ${config?['server'] ?? ''}'
-                    : 'Testna verzija · VPS povezujemo u sledećem koraku.',
+                    ? 'Your server: ${config?['server'] ?? ''}'
+                    : 'Preview build · not connected to a server yet.',
                 style: TextStyle(fontSize: 11,
                     color: Theme.of(context).textTheme.bodySmall?.color),
               );

@@ -1,56 +1,59 @@
 # Aplisim desktop build
 
-Ovaj projekat priprema nepotpisane testne pakete za Windows x64, macOS Intel i
-macOS Apple Silicon. Prvi macOS build i Windows recovery pakovanje su uspešni. Sistemske ikone i tray ikone i dalje
-su upstream RustDesk ikone; logo u aplikaciji, boje i naziv su Aplisim.
+This project produces unsigned test packages for Windows x64, macOS Intel and
+macOS Apple Silicon. All three build and pass a startup check. The in-app logo,
+colors, name, system icons (ICO/ICNS) and tray icons are Aplisim.
 
-## Priprema izvora lokalno
+## Preparing the source locally
 
 ```sh
 git -C upstream/rustdesk submodule update --init --recursive
 python3 scripts/export-build-project.py
 ```
 
-Dobija se samostalan izvorni projekat u `dist/aplisim-build-source`, sa vendorizovanim
-podmodulom, licencom i tri workflow datoteke. Nema privatnih ključeva, VPS podataka
-ili automatskog objavljivanja. Izvoz odbija prepisivanje postojećeg direktorijuma;
-za sledeći izvoz navesti novu `--output` putanju.
+This produces a standalone source project in `dist/aplisim-build-source`, with the
+vendored submodule, the license and the workflow files. It contains no private
+keys, VPS data or automatic publishing. The export refuses to overwrite an
+existing directory; pass a new `--output` path for the next export.
 
-## Build na GitHub Actions
+## Building on GitHub Actions
 
-Izvezeni direktorijum treba da bude koren zasebnog GitHub repozitorijuma.
-Privatni repozitorijum: https://github.com/stefan011v/aplisim-remote-support. Posle postavljanja izvora,
-ručno pokrenuti workflow **Aplisim desktop builds** iz kartice Actions.
+The exported directory must be the root of a separate GitHub repository.
+Private repository: https://github.com/stefan011v/aplisim-remote-support. After
+pushing the source, manually run the **Aplisim desktop builds** workflow from the
+Actions tab.
 
-- `preview`: koristi rezervisani domen `aplisim-preview.invalid`; nema veze sa
-  javnim RustDesk serverima. Služi za proveru izgleda i pokretanja aplikacije.
-- `configured`: zahteva repository variables `APLISIM_SERVER` (domen ili IPv4)
-  i `APLISIM_PUBLIC_KEY` (sadržaj `id_ed25519.pub`). Provera prekida build ako
-  podaci nisu ispravnog formata. Dostupnost i vlasništvo servera se ne proveravaju.
+- `preview`: uses the reserved domain `aplisim-preview.invalid`; it never connects
+  to public RustDesk servers. Use it to check the look and startup of the app.
+- `configured`: requires the repository variables `APLISIM_SERVER` (domain or IPv4)
+  and `APLISIM_PUBLIC_KEY` (contents of `id_ed25519.pub`). The build stops if the
+  values are malformed. Server reachability and ownership are not checked.
 
-Skripta `aplisim/configure-build.py` postavlja server i javni ključ u vendorizovanom
-`libs/hbb_common/src/config.rs` pre kompajliranja. Samo postavljanje promenljivih
-`RENDEZVOUS_SERVER`/`RS_PUB_KEY` nije dovoljno u ovoj upstream reviziji.
+The `aplisim/configure-build.py` script sets the server and public key in the
+vendored `libs/hbb_common/src/config.rs` before compiling. Setting only the
+`RENDEZVOUS_SERVER`/`RS_PUB_KEY` environment variables is not enough in this
+upstream revision.
 
-Workflow zadržava upstream pripremu Flutter/Rust mosta, biblioteka i build alata.
-Windows izlaz je samoraspakujući EXE; macOS izlazi su odvojeni DMG paketi.
-Rezultati se čuvaju kao Actions artifacts zajedno sa SHA256SUMS i javnim build
-metapodacima. Nema kreiranja GitHub Release-a ni slanja paketa servisu za potpisivanje.
-Paketi su izgrađeni na Windows/macOS runnerima; budući build-ovi zavise od
-dostupnosti upstream dependency servisa. Pokretanje može potrošiti Actions minute.
+The workflow keeps the upstream preparation of the Flutter/Rust bridge, libraries
+and build tools. The Windows output is a self-extracting EXE; the macOS outputs
+are separate DMG packages. Results are stored as Actions artifacts together with
+SHA256SUMS and public build metadata. No GitHub Release is created and no package
+is sent to a signing service. Future builds depend on upstream dependency services
+being available. Running the workflow uses Actions minutes.
 
-## Pre distribucije
+## Before distribution
 
-Završiti ICO/ICNS i tray ikone. Proveriti instalaciju, naziv procesa i servisa,
-macOS dozvole za snimanje ekrana i Accessibility, pokretanje posle restarta,
-direktnu i relay vezu. Dodati Windows potpis i macOS potpis/notarizaciju.
-MSI još nije uključen. Zadržati RustDesk licencu i odgovarajući izvorni kod.
+Verify installation, process and service names, macOS Screen Recording and
+Accessibility permissions, startup after reboot, and direct and relay connections.
+Add Windows code signing and macOS signing/notarization. MSI is not included yet.
+Keep the RustDesk license and make the corresponding source code available.
 
-## Površina promene
+## Change surface
 
-Osim logotipa, Flutter boja, desktop naziva i Windows metapodataka, macOS menja
-AppInfo.xcconfig (naziv i bundle ID), project.pbxproj (bundle ID i proizvod),
-Runner.xcscheme (naziv proizvoda), MainMenu.xib (Swift modul), i jednu putanju u
-build.py koja kopira pomoćni servis u Aplisim.app. Sve su potrebne da proizvod
-ostane dosledan nakon preimenovanja. Legacy Sciter build putanja nije menjana.
-Izvezeni hbb_common menja samo podrazumevani server i javni ključ za izabrani build.
+Besides the logo, icons, Flutter colors, desktop name and Windows metadata, macOS
+changes AppInfo.xcconfig (name and bundle ID), project.pbxproj (bundle ID and
+product), Runner.xcscheme (product name), MainMenu.xib (Swift module), and one
+path in build.py that copies the helper service into Aplisim.app. All of these
+keep the product consistent after renaming. The legacy Sciter build path is
+unchanged. The exported hbb_common changes only the default server and public
+key for the selected build.
