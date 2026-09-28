@@ -470,6 +470,11 @@ jobs:
           fi
           ./build.py --flutter --hwcodec --unix-file-copy-paste ${{ matrix.job.extra-build-args }}
 
+      - name: Apply local test signature
+        run: |
+          bash .github/scripts/sign-macos-app.sh flutter/build/macos/Build/Products/Release/Aplisim.app - flutter/macos/Runner/Release.entitlements
+          codesign --force --sign - --options 0 --generate-entitlement-der --entitlements flutter/macos/Runner/Release.entitlements flutter/build/macos/Build/Products/Release/Aplisim.app
+          codesign --verify --deep --strict flutter/build/macos/Build/Products/Release/Aplisim.app
       - name: Smoke test macOS runtime
         run: python3 -c "import subprocess; subprocess.run(['flutter/build/macos/Build/Products/Release/Aplisim.app/Contents/MacOS/Aplisim', '--version'], check=True, timeout=60)"
       - name: Package Aplisim DMG
