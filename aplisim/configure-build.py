@@ -28,23 +28,35 @@ def configuration(mode, host, key):
     return host, key
 
 
-def configure(root, mode, host='', key=''):
-    host, key = configuration(mode, host, key)
-    path = root / 'libs/hbb_common/src/config.rs'
+def patch(path, replacements):
     content = path.read_text()
-    replacements = {
-        r'pub const RENDEZVOUS_SERVERS: &\[&str\] = &\[[^\n]+\];':
-            f'pub const RENDEZVOUS_SERVERS: &[&str] = &[{json.dumps(host)}];',
-        r'pub const RS_PUB_KEY: &str = "[^"\n]+";':
-            f'pub const RS_PUB_KEY: &str = {json.dumps(key)};',
-    }
     for pattern, value in replacements.items():
         content, count = re.subn(pattern, lambda _: value, content)
         if count != 1:
             raise ValueError('Unexpected upstream configuration; refusing to build')
-    path.write_text(content)
+    return content
+
+
+def configure(root, mode, host='', key=''):
+    host, key = configuration(mode, host, key)
+    config_path = root / 'libs/hbb_common/src/config.rs'
+    common_path = root / 'src/common.rs'
+    config_content = patch(config_path, {
+        r'pub const RENDEZVOUS_SERVERS: &\[&str\] = &\[[^\n]+\];':
+            f'pub const RENDEZVOUS_SERVERS: &[&str] = &[{json.dumps(host)}];',
+        r'pub const RS_PUB_KEY: &str = "[^"\n]+";':
+            f'pub const RS_PUB_KEY: &str = {json.dumps(key)};',
+    })
+    # Without this, clients with a built-in server report to admin.rustdesk.com instead of
+    # the Aplisim admin API, which nginx serves over HTTPS on the same host.
+    common_content = patch(common_path, {
+        r'(?m)^    "https://[^"\n]+"\.to_owned\(\)\n\}\n\n#\[inline\]\npub fn is_public':
+            f'    "https://{host}".to_owned()\n}}\n\n#[inline]\npub fn is_public',
+    })
+    config_path.write_text(config_content)
+    common_path.write_text(common_content)
     metadata = json.dumps({
-        'app': 'Aplisim', 'mode': mode, 'server': host, 'publicKey': key,
+        'app': 'Aplisim', 'mode': mode, 'server': host, 'apiServer': f'https://{host}', 'publicKey': key,
         'signed': False, 'connectionTested': False,
     }, indent=2) + '\n'
     (root / 'aplisim-build.json').write_text(metadata)

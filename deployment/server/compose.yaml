@@ -1,5 +1,32 @@
 name: aplisim-remote
 services:
+  api:
+    image: ${RUSTDESK_API_IMAGE:?Set RUSTDESK_API_IMAGE in .env}
+    environment:
+      TZ: Europe/Belgrade
+      RUSTDESK_API_LANG: en
+      RUSTDESK_API_ADMIN_TITLE: Aplisim Admin
+      RUSTDESK_API_APP_REGISTER: "false"
+      RUSTDESK_API_APP_WEB_CLIENT: "0"
+      RUSTDESK_API_GIN_TRUST_PROXY: 172.16.0.0/12
+      RUSTDESK_API_RUSTDESK_ID_SERVER: ${RUSTDESK_HOST}:21116
+      RUSTDESK_API_RUSTDESK_RELAY_SERVER: ${RUSTDESK_HOST}:21117
+      RUSTDESK_API_RUSTDESK_API_SERVER: https://${RUSTDESK_HOST}
+      RUSTDESK_API_RUSTDESK_KEY_FILE: /rustdesk/id_ed25519.pub
+    volumes:
+      - ./api-data:/app/data
+      - ./data/id_ed25519.pub:/rustdesk/id_ed25519.pub:ro
+    # Admin panel and client API are published only through nginx with HTTPS.
+    ports:
+      - "127.0.0.1:21114:21114"
+    restart: unless-stopped
+    depends_on:
+      - hbbs
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
   hbbs:
     image: ${RUSTDESK_IMAGE:?Set RUSTDESK_IMAGE in .env}
     command: ["hbbs", "-r", "${RUSTDESK_HOST:?Set RUSTDESK_HOST in .env}:21117", "-k", "_"]
