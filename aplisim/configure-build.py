@@ -52,6 +52,10 @@ def configure(root, mode, host='', key=''):
     common_content = patch(common_path, {
         r'(?m)^    "https://[^"\n]+"\.to_owned\(\)\n\}\n\n#\[inline\]\npub fn is_public':
             f'    "https://{host}".to_owned()\n}}\n\n#[inline]\npub fn is_public',
+        # The built-in server is Aplisim's own, not RustDesk's public one: no "set up your own
+        # server" tip and no public-server limits on image quality or registration backoff.
+        r'(?m)^pub fn using_public_server\(\) -> bool \{\n    [^\n]+\n\}':
+            'pub fn using_public_server() -> bool {\n    false\n}',
     })
     config_path.write_text(config_content)
     common_path.write_text(common_content)
