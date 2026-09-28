@@ -1,0 +1,40 @@
+name: Aplisim server validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  server:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: deployment
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - name: Start isolated test server
+        run: |
+          cp server/.env.example server/.env
+          sed -i 's/^RUSTDESK_HOST=.*/RUSTDESK_HOST=server.example.invalid/' server/.env
+          bash scripts/start-server.sh
+      - name: Check services and key persistence
+        run: |
+          for attempt in $(seq 1 30); do
+            if python3 scripts/check-server.py; then break; fi
+            sleep 2
+          done
+          python3 scripts/check-server.py --export
+          cd server
+          docker compose exec -T hbbs cat /root/id_ed25519.pub > /tmp/aplisim-public-key-before
+          docker compose restart
+          sleep 5
+          docker compose exec -T hbbs cat /root/id_ed25519.pub > /tmp/aplisim-public-key-after
+          cmp /tmp/aplisim-public-key-before /tmp/aplisim-public-key-after
+      - name: Check backup and service recovery
+        run: |
+          sudo bash scripts/backup-server.sh
+          python3 scripts/check-server.py
+          sudo bash -c 'tar -tzf server/backups/*.tar.gz' | grep 'data/id_ed25519.pub'
+      - name: Stop isolated server
+        if: always()
+        run: docker compose --project-directory server down

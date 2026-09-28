@@ -1,0 +1,4 @@
+server/.env
+server/data/
+server/backups/
+server/client-config.json

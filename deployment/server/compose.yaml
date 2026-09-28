@@ -1,0 +1,32 @@
+name: aplisim
+services:
+  hbbs:
+    image: ${RUSTDESK_IMAGE:?Set RUSTDESK_IMAGE in .env}
+    command: ["hbbs", "-r", "${RUSTDESK_HOST:?Set RUSTDESK_HOST in .env}:21117", "-k", "_"]
+    volumes:
+      - ./data:/root
+    ports:
+      - "21115:21115/tcp"
+      - "21116:21116/tcp"
+      - "21116:21116/udp"
+    restart: unless-stopped
+    depends_on:
+      - hbbr
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+  hbbr:
+    image: ${RUSTDESK_IMAGE:?Set RUSTDESK_IMAGE in .env}
+    command: ["hbbr", "-k", "_"]
+    volumes:
+      - ./data:/root
+    ports:
+      - "21117:21117/tcp"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
