@@ -1,0 +1,46 @@
+name: Recover Aplisim Windows package
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  package:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          ref: 38ee611
+      - name: Restore compiled Windows runtime
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: aplisim-runtime-windows-x86_64
+          run-id: 36345725515
+          github-token: ${{ github.token }}
+          path: rustdesk
+      - name: Install Rust for portable wrapper
+        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9
+        with:
+          toolchain: '1.75'
+      - name: Package existing runtime
+        shell: bash
+        run: |
+          test -s rustdesk/rustdesk.exe
+          mv rustdesk/rustdesk.exe rustdesk/Aplisim.exe
+          sed -i '/dpiAware/d' res/manifest.xml
+          python3 aplisim/configure-build.py
+          cd libs/portable
+          pip3 install -r requirements.txt
+          python3 generate.py -f ../../rustdesk/ -o . -e ../../rustdesk/Aplisim.exe
+          cd ../..
+          mkdir -p aplisim-output
+          cp target/release/rustdesk-portable-packer.exe aplisim-output/Aplisim-windows-x64.exe
+          cp aplisim-build.json aplisim-output/
+          test -s aplisim-output/Aplisim-windows-x64.exe
+          sha256sum aplisim-output/*.exe > aplisim-output/SHA256SUMS
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: aplisim-windows-x64-preview
+          path: aplisim-output/
+          if-no-files-found: error

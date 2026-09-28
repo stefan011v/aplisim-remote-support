@@ -312,7 +312,7 @@ jobs:
           cp target/release/rustdesk-portable-packer.exe aplisim-output/Aplisim-windows-x64.exe
           cp aplisim-build.json aplisim-output/
           test -s aplisim-output/Aplisim-windows-x64.exe
-          shasum -a 256 aplisim-output/*.exe > aplisim-output/SHA256SUMS
+          sha256sum aplisim-output/*.exe > aplisim-output/SHA256SUMS
       - name: Upload Aplisim Windows
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
