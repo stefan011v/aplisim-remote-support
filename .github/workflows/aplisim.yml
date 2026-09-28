@@ -299,6 +299,9 @@ jobs:
           name: aplisim-runtime-windows-${{ matrix.job.arch }}
           path: rustdesk
 
+      - name: Smoke test Windows runtime
+        shell: bash
+        run: python3 -c "import subprocess; subprocess.run(['rustdesk/rustdesk.exe', '--version'], check=True, timeout=60)"
       - name: Package Aplisim executable
         shell: bash
         run: |
@@ -467,6 +470,8 @@ jobs:
           fi
           ./build.py --flutter --hwcodec --unix-file-copy-paste ${{ matrix.job.extra-build-args }}
 
+      - name: Smoke test macOS runtime
+        run: python3 -c "import subprocess; subprocess.run(['flutter/build/macos/Build/Products/Release/Aplisim.app/Contents/MacOS/Aplisim', '--version'], check=True, timeout=60)"
       - name: Package Aplisim DMG
         run: |
           test -d flutter/build/macos/Build/Products/Release/Aplisim.app

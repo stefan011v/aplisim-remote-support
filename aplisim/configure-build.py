@@ -43,10 +43,14 @@ def configure(root, mode, host='', key=''):
         if count != 1:
             raise ValueError('Unexpected upstream configuration; refusing to build')
     path.write_text(content)
-    (root / 'aplisim-build.json').write_text(json.dumps({
+    metadata = json.dumps({
         'app': 'Aplisim', 'mode': mode, 'server': host, 'publicKey': key,
         'signed': False, 'connectionTested': False,
-    }, indent=2) + '\n')
+    }, indent=2) + '\n'
+    (root / 'aplisim-build.json').write_text(metadata)
+    assets = root / 'flutter/assets'
+    assets.mkdir(parents=True, exist_ok=True)
+    (assets / 'aplisim-build.json').write_text(metadata)
 
 
 if __name__ == '__main__':
