@@ -1,7 +1,7 @@
 # Aplisim desktop build
 
 Ovaj projekat priprema nepotpisane testne pakete za Windows x64, macOS Intel i
-macOS Apple Silicon. Build još nije izvršen. Sistemske ikone i tray ikone i dalje
+macOS Apple Silicon. Prvi macOS build i Windows recovery pakovanje su uspešni. Sistemske ikone i tray ikone i dalje
 su upstream RustDesk ikone; logo u aplikaciji, boje i naziv su Aplisim.
 
 ## Priprema izvora lokalno
@@ -19,7 +19,7 @@ za sledeći izvoz navesti novu `--output` putanju.
 ## Build na GitHub Actions
 
 Izvezeni direktorijum treba da bude koren zasebnog GitHub repozitorijuma.
-Repozitorijum još nije napravljen niti objavljen. Posle postavljanja izvora,
+Privatni repozitorijum: https://github.com/stefan011v/aplisim-remote-support. Posle postavljanja izvora,
 ručno pokrenuti workflow **Aplisim desktop builds** iz kartice Actions.
 
 - `preview`: koristi rezervisani domen `aplisim-preview.invalid`; nema veze sa
@@ -36,8 +36,8 @@ Workflow zadržava upstream pripremu Flutter/Rust mosta, biblioteka i build alat
 Windows izlaz je samoraspakujući EXE; macOS izlazi su odvojeni DMG paketi.
 Rezultati se čuvaju kao Actions artifacts zajedno sa SHA256SUMS i javnim build
 metapodacima. Nema kreiranja GitHub Release-a ni slanja paketa servisu za potpisivanje.
-Build zavisi od dostupnosti upstream dependency servisa i tek mora da se proveri
-na stvarnim Windows/macOS runnerima. Pokretanje može potrošiti Actions minute.
+Paketi su izgrađeni na Windows/macOS runnerima; budući build-ovi zavise od
+dostupnosti upstream dependency servisa. Pokretanje može potrošiti Actions minute.
 
 ## Pre distribucije
 

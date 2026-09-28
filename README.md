@@ -2,7 +2,8 @@
 
 Brendirani RustDesk klijent za Windows x64 i macOS (Intel i Apple Silicon).
 
-**Status:** priprema i prvi CI build; gotovi paketi još nisu potvrđeni.
+**Status:** Windows x64 EXE i oba macOS DMG paketa su izgrađeni.
+Proverene su kontrolne sume; instalacija i udaljene sesije još nisu testirani.
 Logo i boje aplikacije su Aplisim. Sistemske i tray ikone još su RustDesk.
 Ovaj repozitorijum sadrži native Flutter/Rust aplikaciju. HTML vizuelni prototip
 iz radnog projekta nije prenet u native UI.
@@ -27,3 +28,12 @@ Detalji: [build uputstvo](aplisim/README.md).
 Zasnovano na RustDesk 1.5.0. Tačne revizije su u [source.json](aplisim/source.json).
 Originalna licenca ostaje u [LICENCE](LICENCE); upstream uputstva u
 [UPSTREAM-README.md](aplisim/UPSTREAM-README.md).
+
+## Testni paketi
+
+- [macOS Intel i Apple Silicon](https://github.com/stefan011v/aplisim-remote-support/actions/runs/36345725515)
+- [Windows x64 — uspešno ponovno pakovanje](https://github.com/stefan011v/aplisim-remote-support/actions/runs/36380393767)
+
+Prvi kompletni run označen je kao neuspešan zbog Windows `shasum` komande,
+iako su oba macOS paketa uspešna. Windows je zatim zapakovan iz sačuvanog
+runtime-a. Glavni workflow sada koristi `sha256sum` za Windows.
