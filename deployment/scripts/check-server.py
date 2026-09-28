@@ -24,7 +24,8 @@ def main():
         container = docker('ps', '--status', 'running', '-q', service)
         if not container:
             raise SystemExit(f'{service} is not running')
-    key = docker('exec', '-T', 'hbbs', 'cat', '/root/id_ed25519.pub')
+    # The RustDesk image has no shell tools; read the key from the mounted data directory.
+    key = (SERVER / 'data/id_ed25519.pub').read_text().strip()
     raw = base64.b64decode(key, validate=True)
     if len(raw) != 32 or base64.b64encode(raw).decode() != key:
         raise SystemExit('Invalid server public key')

@@ -19,6 +19,9 @@ trap resume_services EXIT
 if (( ${#aplisim_running[@]} )); then
   docker compose stop "${aplisim_running[@]}"
 fi
-tar -czf "${aplisim_archive}.partial" .env compose.yaml data
+# Container data is owned by root; archive it from a throwaway container and hand it back to the caller.
+docker run --rm -v "$PWD":/backup -w /backup alpine:3.20 sh -c \
+  'tar -czf "$1" .env compose.yaml data && chown "$2" "$1" && chmod 600 "$1"' \
+  sh "${aplisim_archive}.partial" "$(id -u):$(id -g)"
 mv "${aplisim_archive}.partial" "$aplisim_archive"
 echo "Backup created: $aplisim_archive (contains the private server key; keep private)."

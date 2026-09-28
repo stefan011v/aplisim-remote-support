@@ -1,4 +1,4 @@
-name: aplisim
+name: aplisim-remote
 services:
   hbbs:
     image: ${RUSTDESK_IMAGE:?Set RUSTDESK_IMAGE in .env}
