@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
-          ref: 38ee611
+          ref: 38ee6117f2b966fc1aadf6d587e5803538e06a03
       - name: Restore compiled Windows runtime
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
         with:
