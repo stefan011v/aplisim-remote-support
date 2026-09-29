@@ -1,5 +1,6 @@
 server/.env
 server/data/
 server/api-data/
+server/admin-branding/
 server/backups/
 server/client-config.json

@@ -7,6 +7,7 @@ if [[ ! -f .env ]]; then
 fi
 command -v docker >/dev/null || { echo 'Docker with the Compose plugin is required.' >&2; exit 1; }
 docker compose config --quiet
+[[ -d admin-branding ]] || python3 ../scripts/brand-admin.py
 docker compose up -d
 docker compose ps
 echo 'Public key after initialization: server/data/id_ed25519.pub'
