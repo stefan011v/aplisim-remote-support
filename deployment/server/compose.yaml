@@ -1,5 +1,18 @@
 name: aplisim-remote
 services:
+  download:
+    image: ${DOWNLOAD_IMAGE:?Set DOWNLOAD_IMAGE in .env}
+    volumes:
+      - ./download:/usr/share/nginx/html:ro
+    # Public download page, served at https://<host>/download/ through the host nginx.
+    ports:
+      - "127.0.0.1:21118:80"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
   api:
     image: ${RUSTDESK_API_IMAGE:?Set RUSTDESK_API_IMAGE in .env}
     environment:

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Download Aplisim Remote Support</title>
+<meta name="description" content="Download the Aplisim Remote Support app for Windows and macOS and let our team help you securely.">
+<link rel="icon" href="favicon.ico">
+<style>
+:root{--bg:#0b1417;--bg-2:#0e1a1d;--surface:#122126;--raised:#172a2f;--border:#243a3f;--text:#ecf7f5;--muted:#9bb1ae;--mint:#64ebd5;--primary:#087f73;--on-mint:#06221e;--glow:rgba(100,235,213,.14);--shadow:0 20px 50px rgba(0,0,0,.35);color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+@media (prefers-color-scheme:light){:root{--bg:#f4f8f7;--bg-2:#eaf2f0;--surface:#fff;--raised:#f1f6f5;--border:#d6e3e0;--text:#12302b;--muted:#56706b;--mint:#087f73;--primary:#087f73;--on-mint:#fff;--glow:rgba(8,127,115,.10);--shadow:0 18px 40px rgba(18,48,43,.10);color-scheme:light}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1100px 520px at 78% -8%,var(--glow),transparent 70%),var(--bg);color:var(--text);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--mint)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none}
+.brand img{width:34px;height:auto}
+.brand b{font-size:24px;font-weight:650;letter-spacing:-.8px}
+.brand small{display:block;font-size:10px;font-weight:600;letter-spacing:2.2px;color:var(--muted);text-transform:uppercase;margin-top:-2px}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:22px}
+.nav a:hover{color:var(--text)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding:56px 0 40px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--mint);font-size:12px;font-weight:650;letter-spacing:1.8px;text-transform:uppercase}
+.eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px var(--glow)}
+h1{font-size:clamp(34px,5.2vw,56px);line-height:1.06;letter-spacing:-1.8px;margin:16px 0 18px;font-weight:700}
+h1 span{color:var(--mint)}
+.lead{color:var(--muted);font-size:18px;max-width:34em;margin:0 0 30px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:12px;font-weight:650;font-size:16px;text-decoration:none;border:1px solid transparent;transition:transform .15s ease,background .15s ease,border-color .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--mint);color:var(--on-mint)}
+.btn-ghost{border-color:var(--border);color:var(--text);background:var(--surface)}
+.btn-ghost:hover{border-color:var(--mint)}
+.btn svg{width:18px;height:18px;flex-shrink:0}
+.cta-note{color:var(--muted);font-size:13px;margin-top:14px}
+.visual{position:relative;aspect-ratio:1/1;max-width:380px;justify-self:center;width:100%}
+.visual .ring{position:absolute;inset:0;border-radius:50%;border:1px solid var(--border)}
+.visual .ring.r2{inset:14%}
+.visual .ring.r3{inset:28%;background:radial-gradient(circle,var(--glow),transparent 70%)}
+.visual img{position:absolute;inset:0;margin:auto;width:40%;filter:drop-shadow(0 12px 30px rgba(100,235,213,.25))}
+.chip{position:absolute;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 14px;font-size:13px;box-shadow:var(--shadow);white-space:nowrap}
+.chip b{display:block;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);font-weight:600}
+.chip.c1{top:10%;left:-4%}.chip.c2{bottom:12%;right:-4%}
+.chip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--mint);margin-right:6px}
+section{padding:44px 0}
+h2{font-size:clamp(26px,3.4vw,34px);letter-spacing:-1px;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px;position:relative}
+.card.recommended{border-color:var(--mint);box-shadow:0 0 0 1px var(--mint),var(--shadow)}
+.badge{position:absolute;top:-11px;left:20px;background:var(--mint);color:var(--on-mint);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:999px}
+.card .os{display:flex;align-items:center;gap:12px}
+.card .os svg{width:30px;height:30px;color:var(--text)}
+.card h3{margin:0;font-size:19px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.card .btn{justify-content:center;margin-top:auto}
+.meta{font-size:12px;color:var(--muted)}
+details.hash{font-size:12px;color:var(--muted)}
+details.hash summary{cursor:pointer}
+details.hash code{display:block;word-break:break-all;margin-top:6px;font-size:11px;background:var(--raised);padding:8px;border-radius:8px}
+.mac-hint{margin-top:18px;background:var(--raised);border:1px solid var(--border);border-radius:14px;padding:16px 18px;font-size:14px;color:var(--muted)}
+.mac-hint b{color:var(--text)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px}
+.step:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--glow);color:var(--mint);font-weight:700;margin-bottom:14px}
+.step h3{margin:0 0 6px;font-size:18px}
+.step p{margin:0;color:var(--muted);font-size:14px}
+.tabs{display:inline-flex;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:4px;margin-bottom:18px}
+.tabs button{border:0;background:none;color:var(--muted);font:inherit;font-weight:600;font-size:14px;padding:9px 18px;border-radius:9px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--mint);color:var(--on-mint)}
+.guide{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:8px 26px}
+.guide ol{margin:0;padding:0;list-style:none;counter-reset:g}
+.guide li{counter-increment:g;display:grid;grid-template-columns:34px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--border)}
+.guide li:last-child{border-bottom:0}
+.guide li:before{content:counter(g);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1px solid var(--border);color:var(--mint);font-weight:700;font-size:14px}
+.guide h4{margin:2px 0 4px;font-size:16px}
+.guide p{margin:0;color:var(--muted);font-size:14px}
+.kbd{display:inline-block;padding:1px 8px;border-radius:6px;border:1px solid var(--border);background:var(--raised);color:var(--text);font-size:13px;font-weight:600}
+.warn{margin-top:8px;border-left:3px solid var(--mint);background:var(--raised);padding:10px 12px;border-radius:0 8px 8px 0;font-size:13px;color:var(--muted)}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.trust div{padding:4px 0}
+.trust h3{font-size:16px;margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.trust svg{width:20px;height:20px;color:var(--mint)}
+.trust p{margin:0;color:var(--muted);font-size:14px}
+footer{border-top:1px solid var(--border);margin-top:40px;padding:28px 0 40px;color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+footer a{color:var(--muted)}
+@media (max-width:860px){.hero{grid-template-columns:1fr;padding-top:28px;gap:28px}.visual{max-width:260px;order:-1}.chip{display:none}.grid,.steps,.trust{grid-template-columns:1fr}.nav{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-win" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.1 10.4 4v7.1H3V5.1Zm0 13.8 7.4 1.1v-7H3v5.9Zm8.3 1.2L21 21.5V13h-9.7v7.1Zm0-16.2V11H21V2.5l-9.7 1.4Z"/></symbol>
+  <symbol id="i-apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.9-3-.8a4.5 4.5 0 0 0-3.8 2.3c-1.6 2.8-.4 7 1.2 9.2.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.2.9-1.3 1.3-2.5 1.3-2.6 0 0-2.5-1-2.5-3.8ZM14.1 5.8c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3Z"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 11V8a6 6 0 0 1 12 0v3M5 11h14v10H5z"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Zm-3 9 2 2 4-4"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 4h16v6H4zM4 14h16v6H4zM8 7h.01M8 17h.01"/></symbol>
+</svg>
+
+<div class="wrap">
+  <header>
+    <a class="brand" href="#top" aria-label="Aplisim Remote Support">
+      <img src="logo-mark.png" alt="">
+      <span><b>aplisim</b><small>Remote Support</small></span>
+    </a>
+    <nav class="nav" aria-label="Page">
+      <a href="#download">Download</a>
+      <a href="#install">Installation guide</a>
+      <a href="#security">Security</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <span class="eyebrow">Aplisim Remote Support</span>
+        <h1>We're here, <span>wherever you are.</span></h1>
+        <p class="lead">Download the Aplisim app, share your ID and one-time password with our team, and we'll connect securely to your computer to help.</p>
+        <div class="cta">
+          <a class="btn btn-primary" id="primary-dl" href="#download"><svg><use href="#i-dl"/></svg><span>Download for your computer</span></a>
+          <a class="btn btn-ghost" href="#install">How to install</a>
+        </div>
+        <p class="cta-note" id="primary-note">Free for our customers · Windows 10/11 and macOS</p>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div>
+        <img src="logo-mark.png" alt="">
+        <div class="chip c1"><b>Your ID</b>123 456 789</div>
+        <div class="chip c2"><span class="dot"></span>Connected securely</div>
+      </div>
+    </div>
+
+    <section id="download" aria-labelledby="download-title">
+      <h2 id="download-title">Download the app</h2>
+      <p class="sub">Choose the version for your computer. It takes less than a minute.</p>
+      <div class="grid">
+        <article class="card" data-platform="windows">
+          <div class="os"><svg><use href="#i-win"/></svg><h3>Windows</h3></div>
+          <p>Windows 10 and 11, 64-bit.</p>
+          <span class="meta" data-meta="windows">Aplisim-Windows-x64.exe</span>
+          <a class="btn btn-primary" href="files/Aplisim-Windows-x64.exe" download><svg><use href="#i-dl"/></svg>Download for Windows</a>
+          <details class="hash"><summary>SHA-256 checksum</summary><code data-hash="windows">See SHA256SUMS</code></details>
+        </article>
+        <article class="card" data-platform="mac-arm">
+          <div class="os"><svg><use href="#i-apple"/></svg><h3>Mac with Apple chip</h3></div>
+          <p>M1, M2, M3, M4 and newer.</p>
+          <span class="meta" data-meta="mac-arm">Aplisim-macOS-AppleSilicon.dmg</span>
+          <a class="btn btn-primary" href="files/Aplisim-macOS-AppleSilicon.dmg" download><svg><use href="#i-dl"/></svg>Download for Mac</a>
+          <details class="hash"><summary>SHA-256 checksum</summary><code data-hash="mac-arm">See SHA256SUMS</code></details>
+        </article>
+        <article class="card" data-platform="mac-intel">
+          <div class="os"><svg><use href="#i-apple"/></svg><h3>Mac with Intel</h3></div>
+          <p>Older Macs with an Intel processor.</p>
+          <span class="meta" data-meta="mac-intel">Aplisim-macOS-Intel.dmg</span>
+          <a class="btn btn-primary" href="files/Aplisim-macOS-Intel.dmg" download><svg><use href="#i-dl"/></svg>Download for Mac</a>
+          <details class="hash"><summary>SHA-256 checksum</summary><code data-hash="mac-intel">See SHA256SUMS</code></details>
+        </article>
+      </div>
+      <div class="mac-hint"><b>Not sure which Mac you have?</b> Click the <b>Apple menu</b> in the top-left corner → <b>About This Mac</b>. If it says <b>Chip: Apple M…</b>, choose “Mac with Apple chip”. If it says <b>Processor: Intel</b>, choose “Mac with Intel”.</div>
+    </section>
+
+    <section aria-labelledby="how-title">
+      <h2 id="how-title">How it works</h2>
+      <p class="sub">Three steps, and you stay in control the whole time.</p>
+      <div class="steps">
+        <div class="step"><h3>Download &amp; open</h3><p>Install the Aplisim app for your system using the guide below.</p></div>
+        <div class="step"><h3>Share your ID</h3><p>The app shows <b>your ID</b> and a <b>one-time password</b>. Send both to the Aplisim team member helping you.</p></div>
+        <div class="step"><h3>We connect</h3><p>You'll see who is connected and can end the session at any time by closing the window.</p></div>
+      </div>
+    </section>
+
+    <section id="install" aria-labelledby="install-title">
+      <h2 id="install-title">Installation guide</h2>
+      <p class="sub">The app is new, so your system may ask you to confirm the first time you open it. This is expected.</p>
+      <div class="tabs" role="tablist" aria-label="Operating system">
+        <button role="tab" id="tab-windows" aria-controls="panel-windows" aria-selected="true">Windows</button>
+        <button role="tab" id="tab-mac" aria-controls="panel-mac" aria-selected="false">macOS</button>
+      </div>
+      <div class="guide" role="tabpanel" id="panel-windows" aria-labelledby="tab-windows">
+        <ol>
+          <li><div><h4>Open the downloaded file</h4><p>Open <b>Aplisim-Windows-x64.exe</b> from your Downloads folder.</p></div></li>
+          <li><div><h4>Confirm the Windows prompt</h4><p>If you see <b>“Windows protected your PC”</b>, click <span class="kbd">More info</span>, then <span class="kbd">Run anyway</span>.</p><div class="warn">Windows shows this for new apps that are not yet widely downloaded. The app comes directly from Aplisim.</div></div></li>
+          <li><div><h4>Share your ID and password</h4><p>The Aplisim window opens. Send us the <b>ID</b> and <b>One-time password</b> shown on the left.</p></div></li>
+          <li><div><h4>Optional: install permanently</h4><p>If we'll help you regularly, click <span class="kbd">Install</span> in the app so it starts with Windows. For a one-time session, you can skip this.</p></div></li>
+        </ol>
+      </div>
+      <div class="guide" role="tabpanel" id="panel-mac" aria-labelledby="tab-mac" hidden>
+        <ol>
+          <li><div><h4>Open the downloaded file</h4><p>Open the <b>.dmg</b> file, then drag <b>Aplisim</b> into the <b>Applications</b> folder.</p></div></li>
+          <li><div><h4>Open Aplisim from Applications</h4><p>If macOS says it <b>could not verify</b> the app, click <span class="kbd">Done</span>. Then open <b>System Settings → Privacy &amp; Security</b>, scroll down and click <span class="kbd">Open Anyway</span> next to Aplisim.</p><div class="warn">You only need to do this once. After that, Aplisim opens normally.</div></div></li>
+          <li><div><h4>Allow screen sharing</h4><p>So we can see and control your screen, click <span class="kbd">Configure</span> in the app and turn on Aplisim under <b>Screen Recording</b> and <b>Accessibility</b> in Privacy &amp; Security.</p></div></li>
+          <li><div><h4>Share your ID and password</h4><p>Send us the <b>ID</b> and <b>One-time password</b> shown in the Aplisim window.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="security" aria-labelledby="security-title">
+      <h2 id="security-title">Safe by design</h2>
+      <p class="sub">Your computer stays yours.</p>
+      <div class="trust">
+        <div><h3><svg><use href="#i-hand"/></svg>You decide</h3><p>Nobody can connect without your ID and the one-time password you choose to share. Close the window to end the session.</p></div>
+        <div><h3><svg><use href="#i-lock"/></svg>Encrypted</h3><p>Every session, including screen, keyboard and file transfers, is encrypted end to end.</p></div>
+        <div><h3><svg><use href="#i-server"/></svg>Our own servers</h3><p>Connections go through Aplisim's own infrastructure, not a third-party service.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year">2026</span> Aplisim · Remote Support</span>
+    <span>Based on <a href="https://rustdesk.com" rel="noopener">RustDesk</a> (AGPL-3.0) · <a href="https://github.com/stefan011v/aplisim-remote-support" rel="noopener">Source code</a></span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var names = { windows: 'Windows', 'mac-arm': 'Mac with Apple chip', 'mac-intel': 'Mac with Intel' };
+  function hrefFor(p) { var a = document.querySelector('[data-platform="' + p + '"] a.btn'); return a && a.getAttribute('href'); }
+  function recommend(p, sure) {
+    var card = document.querySelector('[data-platform="' + p + '"]');
+    if (!card) return;
+    document.querySelectorAll('.card').forEach(function (c) { c.classList.remove('recommended'); var b = c.querySelector('.badge'); if (b) b.remove(); });
+    card.classList.add('recommended');
+    var badge = document.createElement('span'); badge.className = 'badge'; badge.textContent = 'Recommended for you'; card.prepend(badge);
+    var primary = document.getElementById('primary-dl');
+    if (sure) {
+      primary.setAttribute('href', hrefFor(p)); primary.setAttribute('download', '');
+      primary.querySelector('span').textContent = 'Download for ' + names[p];
+    }
+    selectTab(p === 'windows' ? 'windows' : 'mac');
+  }
+  function selectTab(os) {
+    ['windows', 'mac'].forEach(function (k) {
+      var on = k === os;
+      document.getElementById('tab-' + k).setAttribute('aria-selected', String(on));
+      document.getElementById('panel-' + k).hidden = !on;
+    });
+  }
+  document.querySelectorAll('.tabs button').forEach(function (b) {
+    b.addEventListener('click', function () { selectTab(b.id.replace('tab-', '')); });
+  });
+  var ua = navigator.userAgent || '';
+  if (/Windows/i.test(ua)) recommend('windows', true);
+  else if (/Macintosh|Mac OS X/i.test(ua) && !/iPhone|iPad/i.test(ua)) {
+    var decided = false;
+    if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+      navigator.userAgentData.getHighEntropyValues(['architecture']).then(function (v) {
+        if (v.architecture === 'arm') recommend('mac-arm', true);
+        else if (v.architecture === 'x86') recommend('mac-intel', true);
+        else recommend('mac-arm', false);
+      }).catch(function () { recommend('mac-arm', false); });
+      decided = true;
+    }
+    if (!decided) {
+      // Safari does not expose the CPU; WebGL usually names the Apple GPU on Apple silicon.
+      var arm = false;
+      try { var gl = document.createElement('canvas').getContext('webgl'); var r = gl && gl.getParameter(gl.RENDERER); arm = /Apple M|Apple GPU/i.test(r || ''); } catch (e) {}
+      recommend('mac-arm', arm);
+      if (!arm) document.getElementById('primary-note').textContent = 'Choose your Mac type below · Windows 10/11 and macOS';
+    }
+  }
+  document.getElementById('year').textContent = new Date().getFullYear();
+  fetch('files/downloads.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+    if (!d) return;
+    Object.keys(d).forEach(function (k) {
+      var m = document.querySelector('[data-meta="' + k + '"]'); if (m) m.textContent = d[k].file + ' · ' + d[k].size + ' · version ' + d[k].version;
+      var h = document.querySelector('[data-hash="' + k + '"]'); if (h) h.textContent = d[k].sha256;
+    });
+  }).catch(function () {});
+})();
+</script>
+</body>
+</html>

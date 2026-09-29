@@ -24,4 +24,6 @@ docker run --rm -v "$PWD":/backup -w /backup alpine:3.20 sh -c \
   'tar -czf "$1" .env compose.yaml data $(test -d api-data && echo api-data) && chown "$2" "$1" && chmod 600 "$1"' \
   sh "${aplisim_archive}.partial" "$(id -u):$(id -g)"
 mv "${aplisim_archive}.partial" "$aplisim_archive"
+# Keep two weeks of archives by default; older ones are removed after a successful backup.
+find backups -name 'aplisim-*.tar.gz' -mtime +"${APLISIM_BACKUP_KEEP_DAYS:-14}" -delete
 echo "Backup created: $aplisim_archive (contains the private server key; keep private)."
