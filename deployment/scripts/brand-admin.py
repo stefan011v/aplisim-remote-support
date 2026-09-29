@@ -45,6 +45,14 @@ def main():
         # "Open in client" must launch the Aplisim app, which registers its own URL scheme.
         [peer] = [p for p in (admin / 'static/chunk').glob('*.js') if 'rustdesk://${' in p.read_text()]
         replace_once(peer, r'`rustdesk://\$\{', '`aplisim://${')
+        # Show the active language code (EN, FR, ...) instead of the static CJK translate glyph.
+        [header] = [p for p in (admin / 'static/chunk').glob('*.js') if 'm18.5 10l4.4 11h' in p.read_text()]
+        replace_once(
+            header,
+            r'm\[(\d+)\]\|\|\(m\[\1\]=h\("div",\{class:"title"\},\[h\("i",\{class:"el-icon el-tooltip__trigger"'
+            r'[^\]]*\[h\("svg",\{[^}]*\},\[h\("path",\{fill:"currentColor",d:"m18\.5 10l4\.4 11h[^"]*"\}\)\]\)\]\)\],-1\)\)',
+            'h("div",{class:"title",style:{"font-size":"14px","font-weight":"600","letter-spacing":"0.5px"}},'
+            'v(g(c).setting.lang.split("-")[0].toUpperCase()),1)')
         shutil.copyfile(FAVICON, admin / 'favicon.ico')
         if OUTPUT.exists():
             shutil.rmtree(OUTPUT)
