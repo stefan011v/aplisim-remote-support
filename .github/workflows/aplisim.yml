@@ -46,6 +46,7 @@ env:
   APLISIM_BUILD_MODE: ${{ inputs.mode }}
   APLISIM_SERVER: ${{ vars.APLISIM_SERVER }}
   APLISIM_PUBLIC_KEY: ${{ vars.APLISIM_PUBLIC_KEY }}
+  APLISIM_ACCESS_PASSWORD: ${{ secrets.APLISIM_ACCESS_PASSWORD }}
 
 jobs:
   generate-bridge:
